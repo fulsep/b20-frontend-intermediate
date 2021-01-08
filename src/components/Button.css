@@ -1,0 +1,17 @@
+.btn{
+  min-width: 150px;
+  min-height: 45px;
+  border-radius: 20px;
+  background-color: red;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  border-width: 0;
+  outline: none;
+}
+.btn:hover{
+  background-color: brown;
+}
+.btn:focus{
+  background-color: black;
+}
