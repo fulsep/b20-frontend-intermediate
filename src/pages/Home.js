@@ -1,36 +1,30 @@
 import React,{Component} from 'react'
-import {default as axios} from 'axios'
 import {Container, Row, Col} from 'react-bootstrap'
-import {Link} from 'react-router-dom'
+
+import Navbar from '../components/Navbar'
+import CinemaCard from '../components/CinemaCard'
+import cinemaList from '../dummy/cinemaList'
 
 class Home extends Component{
   state = {
-    characterList: []
-  }
-  async componentDidMount(){
-    const {data} = await axios.get('https://rickandmortyapi.com/api/character')
-    this.setState({characterList: data.results})
+    cinemaList: cinemaList
   }
   render(){
     return(
-      <Container>
-        <div className="my-5">
-          <Link className='btn btn-primary' to='/about'>Go to about</Link>
-        </div>
-        <Row>
-          {this.state.characterList.map((character, index)=>{
-            return (
-              <React.Fragment key={String(character.id)}>
+      <>
+        <Navbar />
+        <Container>
+          <Row>
+            {this.state.cinemaList.map((item, index)=>{
+              return(
                 <Col md={4}>
-                  <img src={character.image} alt={character.name} />
-                  <div>{character.name}</div>
-                  <div>{character.gender}</div>
+                  <CinemaCard data={item} />
                 </Col>
-              </React.Fragment>
-            )
-          })}
-        </Row>
-      </Container>
+              )
+            })}
+          </Row>
+        </Container>
+      </>
     )
   }
 }

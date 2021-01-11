@@ -1,0 +1,13 @@
+.nb {
+  height: 104px;
+}
+
+.nb .navbar-brand img{
+  width: 120px;
+  height: auto;
+}
+
+.nb .navbar-collapse .nav-item img{
+  width: 56px;
+  height: auto;
+}
