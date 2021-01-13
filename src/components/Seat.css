@@ -1,0 +1,26 @@
+.cb{
+
+}
+.cb input{
+  display:none;
+}
+
+.cb input ~ .check{
+  width: 20px;
+  height: 20px;
+  background-color: grey;
+  display: block;
+}
+
+.cb input ~ .lovenest{
+  width: 40px;
+  background-color: pink !important;
+}
+
+.cb input:checked ~ .lovenest{
+  background-color: green !important;
+}
+
+.cb input:checked ~ .check{
+  background-color: red;
+}
