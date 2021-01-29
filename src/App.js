@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import CinemaDetail from './pages/CinemaDetail';
 import MovieDetail from './pages/MovieDetail';
 import SelectSeat from './pages/SelectSeat';
+import Admin from './pages/Admin';
 
 class App extends Component {
   render() {
@@ -27,6 +28,7 @@ class App extends Component {
             {/*<Route path="/movie/:id" component={MovieDetail} />*/}
             <PrivateRoute path='/movie/:id' privateComponent={MovieDetail} />
             <Route path="/select-seat/:id" component={SelectSeat} />
+            <PrivateRoute path="/admin" privateComponent={Admin} />
           </Switch>
         </BrowserRouter>
       </Provider>

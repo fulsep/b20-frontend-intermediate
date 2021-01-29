@@ -1,9 +1,9 @@
 import React,{Component} from 'react'
-import {Form, Button} from 'react-bootstrap'
+import {Form, Button, Alert} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import './Register.css'
 
-import {login} from '../redux/actions/auth'
+import {login, autoLogin} from '../redux/actions/auth'
 
 class Register extends Component{
   state = {
@@ -17,8 +17,16 @@ class Register extends Component{
   }
   componentDidUpdate(){
     if(this.props.auth.token){
-      this.props.history.push('/')
+      const {from = null} = this.props.location.state
+      this.props.history.push((from && from.pathname) || '/')
     }
+  }
+  componentDidMount(){
+      const token = localStorage.getItem('token')
+      console.log(token)
+      if(token){
+          this.props.autoLogin(token)
+      }
   }
   changeText = (event)=> {
     this.setState({[event.target.name]:event.target.value})
@@ -28,6 +36,7 @@ class Register extends Component{
       <div className="d-flex vh-100 justify-content-center align-items-center">
         <Form onSubmit={this.submitData} className="form-register">
           <h1>Login</h1>
+          {this.props.auth.errorMsg!== '' && <Alert variant="danger">{this.props.auth.errorMsg}</Alert>}
           <hr />
           <Form.Group>
             <Form.Label>Username</Form.Label>
@@ -47,6 +56,6 @@ class Register extends Component{
 const mapStateToProps = state => ({
   auth: state.auth
 })
-const mapDispatchToProps = {login}
+const mapDispatchToProps = {login, autoLogin}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register)
