@@ -15,6 +15,7 @@ export default class MovieDetail extends Component {
     }
     componentDidMount(){
         const {id} = this.props.match.params
+        console.log(this.props)
         const data = filmList.filter((item)=>item.id===Number(id))[0]
         this.setState({movie: data})
     }
